@@ -1,4 +1,3 @@
-#[macro_use]
 extern crate rocket;
 
 use rocket::{launch};
@@ -65,8 +64,7 @@ fn rocket() -> _ {
             estudiantes: Mutex::new(vec![]),
         })
         .mount("/", routes![obtener_estudiantes, crear_estudiante, actualizar_estudiante, eliminar_estudiante])
-        .configure(rocket::Config {
-            port: 8081, // Cambia a otro puerto
-            ..Default::default()
-        })
+        .configure(rocket::Config::figment()
+            .merge(("port", 8000))
+            .merge(("address", "0.0.0.0")))
 }
