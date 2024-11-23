@@ -32,7 +32,7 @@ Este proyecto es una API REST desarrollada en Rust utilizando el framework Rocke
 
 Aquí mostramos cómo se ejecutó el pipeline:
 
-![Jenkins Pipeline](img/jenkins_pipeline.png)
+![Jenkins Pipeline](img/resultados.png)
 
 ### 2. Resultados de las pruebas
 
