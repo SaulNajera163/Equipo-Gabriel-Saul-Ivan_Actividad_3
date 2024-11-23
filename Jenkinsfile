@@ -32,4 +32,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Clonando el repositorio desde GitHub'
-                git url: 'https://github.com/SaulNajera
+                git url: 'https://github.com/SaulNajera163/Equipo-Gabriel-Saul-Ivan_Actividad_3.git', branch: 'main'
+            }
+        }
+    }
+}
