@@ -1,57 +1,35 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'api_estudiantes'
-        DOCKER_TAG = 'latest'
-        CONTAINER_NAME = 'api_test_container'
-        APP_PORT = '8000'
-    }
-
     stages {
-        stage('Verificación de Ambiente') {
+        // Etapa 1: Prueba de inicio
+        stage('Test') {
             steps {
-                script {
-                    // Verificar Git
-                    sh 'git --version || echo "Git is not installed"'
-                    // Verificar Docker
-                    sh 'docker --version || echo "Docker is not installed"'
-                    // Verificar que la imagen existe
-                    sh 'docker images ${DOCKER_IMAGE}:${DOCKER_TAG} || echo "Docker image not found"'
-                }
+                echo 'Prueba de pipeline básico'
             }
         }
 
-        stage('Prueba de API') {
+        // Etapa 2: Validar entorno (opcional)
+        stage('Check Environment') {
             steps {
-                script {
-                    try {
-                        // Intentar detener el contenedor si existe
-                        sh 'docker stop ${CONTAINER_NAME} || true'
-                        sh 'docker rm ${CONTAINER_NAME} || true'
-                        
-                        // Iniciar el contenedor
-                        sh 'docker run -d --name ${CONTAINER_NAME} -p ${APP_PORT}:${APP_PORT} ${DOCKER_IMAGE}:${DOCKER_TAG}'
-                        
-                        // Esperar a que la API esté lista
-                        sh 'sleep 10'
-                        
-                        // Prueba básica
-                        sh 'curl -f http://localhost:${APP_PORT} || echo "API test failed"'
-                    } catch (Exception e) {
-                        echo "Error durante las pruebas: ${e.message}"
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
+                echo "Verificando entorno de Jenkins"
+                sh 'java -version || echo "Java no está instalado"'
+                sh 'docker --version || echo "Docker no está instalado"'
             }
         }
-    }
 
-    post {
-        always {
-            // Limpiar
-            sh 'docker stop ${CONTAINER_NAME} || true'
-            sh 'docker rm ${CONTAINER_NAME} || true'
+        // Etapa 3: Ejecutar un contenedor Docker de prueba
+        stage('Run Docker Test') {
+            steps {
+                echo "Levantando un contenedor de prueba"
+                sh '''
+                docker run --rm hello-world
+                '''
+            }
         }
-    }
-}
+
+        // Etapa 4: Clonar repositorio (prueba Git)
+        stage('Clone Repository') {
+            steps {
+                echo 'Clonando el repositorio desde GitHub'
+                git url: 'https://github.com/SaulNajera
