@@ -49,6 +49,63 @@ La API permite realizar las siguientes operaciones sobre los estudiantes:
 - **PUT /estudiantes/{numero_control}**: Actualiza la información de un estudiante existente.
 - **DELETE /estudiantes/{numero_control}**: Elimina un estudiante de la lista.
 
+## Despliegue en Kubernetes Actividad Final
+
+### Pasos para desplegar en Minikube
+
+1. Iniciar Minikube:
+    ```bash
+    minikube start
+    ```
+
+2. Cargar la imagen de Docker:
+    ```bash
+    minikube image load api_estudiantes:latest
+    ```
+
+3. Aplicar los manifiestos de Kubernetes:
+    ```bash
+    kubectl apply -f k8s/deployment.yaml
+    kubectl apply -f k8s/service.yaml
+    ```
+
+4. Verificar los pods:
+    ```bash
+    kubectl get pods
+    ```
+
+5. Acceder al servicio:
+    ```bash
+    minikube service api-estudiantes-service
+    ```
+
+### Detalles del Despliegue
+
+- **Número de Réplicas**: 5 pods
+- **Tipo de Servicio**: NodePort
+- **Puerto Externo**: 30000
+
+### Capturas del Despliegue
+
+#### Vista de los 5 Pods en Ejecución
+[img/pods.png]
+
+
+#### Servicio de Kubernetes
+[img/el_servicio.png]
+
+#### Pruebas en Postman
+
+##### URL del Servicio
+[img/url_para_postman.png]
+
+
+##### Ejemplo de Solicitud GET
+[img/get.png]
+
+##### Ejemplo de Solicitud POST
+[img/post.png]
+
 ## Contribuciones
 
-Si deseas contribuir al proyecto, por favor abre un *pull request*.
+Alguna duda al proyecto, por favor: 20240559@leon.tecnm.mx
