@@ -1,0 +1,13 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-estudiantes-service
+spec:
+  type: NodePort
+  selector:
+    app: api-estudiantes
+  ports:
+  - port: 8000           # Puerto del servicio
+    targetPort: 8000     # Puerto del contenedor
+    nodePort: 30000      # Puerto expuesto externamente

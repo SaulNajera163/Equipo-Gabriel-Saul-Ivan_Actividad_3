@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-estudiantes
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: api-estudiantes
+  template:
+    metadata:
+      labels:
+        app: api-estudiantes
+    spec:
+      containers:
+      - name: api-estudiantes
+        image: api_estudiantes:latest
+        imagePullPolicy: Never  # Cambiar a Never para usar imagen local
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
