@@ -88,23 +88,23 @@ La API permite realizar las siguientes operaciones sobre los estudiantes:
 ### Capturas del Despliegue
 
 #### Vista de los 5 Pods en Ejecución
-[img/pods.png]
+![Vista de los 5 Pods en Ejecución](img/pods.png)
 
 
 #### Servicio de Kubernetes
-[img/el_servicio.png]
+![Servicio de Kubernetes](img/el_servicio.png)
 
 #### Pruebas en Postman
 
 ##### URL del Servicio
-[img/url_para_postman.png]
+![URL del Servicio](img/url_para_postman.png)
 
 
 ##### Ejemplo de Solicitud GET
-[img/get.png]
+![Ejemplo de Solicitud GET](img/get.png)
 
 ##### Ejemplo de Solicitud POST
-[img/post.png]
+![Ejemplo de Solicitud POST](img/post.png)
 
 ## Contribuciones
 
